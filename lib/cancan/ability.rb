@@ -199,6 +199,19 @@ module CanCan
       end
     end
     
+    def initialize(user)
+    	@user=user
+    	self.try(role)
+    end
+    
+    def based_on(role)
+    	begin
+		self.try(role)
+	rescue NoMethodError
+		raise Error, "Supplied role #{role.to_s.inspect} for \"based_on\" does not exist"
+	end
+    end
+    
     private
     
     def can_definitions
