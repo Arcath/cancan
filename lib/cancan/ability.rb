@@ -215,6 +215,8 @@ module CanCan
     	self.try(role)
     end
     
+    private
+    
     def based_on(role)
     	begin
 		self.try(role)
@@ -222,8 +224,6 @@ module CanCan
 		raise Error, "Supplied role #{role.to_s.inspect} for \"based_on\" does not exist"
 	end
     end
-    
-    private
     
     def can_definitions
       @can_definitions ||= []
